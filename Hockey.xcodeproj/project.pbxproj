@@ -487,6 +487,7 @@
 				F52622331CBC36E500203E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F52622341CBC36E500203E67 /* Build configuration list for PBXNativeTarget "HockeyTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +496,7 @@
 				F52622361CBC36E500203E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F52622371CBC36E500203E67 /* Build configuration list for PBXNativeTarget "HockeyUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +505,7 @@
 				F52622391CBC36E500203E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
