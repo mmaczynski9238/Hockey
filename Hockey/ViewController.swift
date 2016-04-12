@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     var dynamicAnimator = UIDynamicAnimator()
     var collisionBehavior = UICollisionBehavior()
@@ -19,7 +19,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        puckView.backgroundColor = UIColor.blueColor()
+        view.addSubview(puckView)
         
+       // addDynamicBehavior(puckView)
     }
 
     @IBAction func hockeyStickPanGestureRecognizer(sender: UIPanGestureRecognizer) {
@@ -28,5 +31,25 @@ class ViewController: UIViewController {
         dynamicAnimator.updateItemUsingCurrentState(hockeyStickView)
     }
 
-}
+    func addDynamicBehavior(array: [UIView]){
+        let dynamicItemBehavior = UIDynamicItemBehavior(items: array)
+        dynamicItemBehavior.density = 1.0
+        dynamicItemBehavior.elasticity = 1.0
+        dynamicItemBehavior.friction = 0.0
+        dynamicItemBehavior.resistance = 0.0
+        dynamicAnimator.addBehavior(dynamicItemBehavior)
+        
+        let pushBehavior = UIPushBehavior(items: array, mode: .Instantaneous)
+        pushBehavior.magnitude = 1.0
+        pushBehavior.pushDirection = CGVectorMake(0.5, 0.5)
+        dynamicAnimator.addBehavior(pushBehavior)
+        
+        
+        let collisionBehavior = UICollisionBehavior(items: array)
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        collisionBehavior.collisionMode = .Everything
+        collisionBehavior.collisionDelegate = self
+        dynamicAnimator.addBehavior(collisionBehavior)
 
+}
+}
