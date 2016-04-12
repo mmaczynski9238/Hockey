@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     var dynamicAnimator = UIDynamicAnimator()
     var collisionBehavior = UICollisionBehavior()
 
@@ -27,6 +28,8 @@ class ViewController: UIViewController {
         hockeyStickView.center = CGPointMake(panGesture.x, hockeyStickView.center.y)
         dynamicAnimator.updateItemUsingCurrentState(hockeyStickView)
     }
-
+    
+    
+    
 }
 
