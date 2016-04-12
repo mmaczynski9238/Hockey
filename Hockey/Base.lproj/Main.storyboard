@@ -24,6 +24,10 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="88g-vi-e0e">
                                 <rect key="frame" x="234" y="697" width="300" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="7Ns-jF-0Xh" appends="YES" id="zdM-9p-rkg"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -31,10 +35,16 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
+                        <outlet property="hockeyStickView" destination="88g-vi-e0e" id="R2M-89-wLf"/>
                         <outlet property="puckView" destination="vcp-q8-Wyv" id="C8i-1m-ppz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="7Ns-jF-0Xh">
+                    <connections>
+                        <action selector="hockeyStickPanGestureRecognizer:" destination="BYZ-38-t0r" id="qPM-Lh-zfI"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="337" y="434"/>
         </scene>

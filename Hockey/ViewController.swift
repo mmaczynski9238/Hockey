@@ -13,16 +13,20 @@ class ViewController: UIViewController {
     var dynamicAnimator = UIDynamicAnimator()
     var collisionBehavior = UICollisionBehavior()
 
-    @IBOutlet weak var playerOneView: UIView!
-    @IBOutlet weak var playerTwoView: UIView!
+    @IBOutlet weak var hockeyStickView: UIView!
     @IBOutlet weak var puckView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-                
+        
     }
 
+    @IBAction func hockeyStickPanGestureRecognizer(sender: UIPanGestureRecognizer) {
+        let panGesture = sender.locationInView(view)
+        hockeyStickView.center = CGPointMake(panGesture.x, hockeyStickView.center.y)
+        dynamicAnimator.updateItemUsingCurrentState(hockeyStickView)
+    }
 
 }
 
