@@ -20,20 +20,27 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-       
-    }
-    func setupViews(){
-        puckView.backgroundColor = UIColor.blueColor()
+        array.append(puckView)
         view.addSubview(puckView)
+
+        
+        addDynamicBehavior()
+
+        puckView.backgroundColor = UIColor.blueColor()
+
     }
-    @IBAction func hockeyStickPanGestureRecognizer(sender: UIPanGestureRecognizer) {
+    
+    
+    @IBAction func hockeyStickPanGestureRecognizer(sender: UIPanGestureRecognizer)
+    {
         let panGesture = sender.locationInView(view)
         hockeyStickView.center = CGPointMake(panGesture.x, hockeyStickView.center.y)
         dynamicAnimator.updateItemUsingCurrentState(hockeyStickView)
     }
     
-    func addDynamicBehavior(array: [UIView]){
+    func addDynamicBehavior()
+    {
+        
         let dynamicItemBehavior = UIDynamicItemBehavior(items: array)
         dynamicItemBehavior.density = 1.0
         dynamicItemBehavior.elasticity = 1.0
