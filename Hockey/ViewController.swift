@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
+    
     var dynamicAnimator = UIDynamicAnimator()
     var collisionBehavior = UICollisionBehavior()
 
