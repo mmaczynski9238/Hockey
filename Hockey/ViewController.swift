@@ -39,16 +39,14 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
         view.addSubview(hockeyStickView)
         
-        
         addDynamicBehavior()
 
         puckView.backgroundColor = UIColor.blueColor()
 
     }
     
-    
     @IBAction func hockeyStickPanGestureRecognizer(sender: UIPanGestureRecognizer)
-    {
+    {////
         let panGesture = sender.locationInView(view)
         hockeyStickView.center = CGPointMake(panGesture.x, hockeyStickView.center.y)
         dynamicAnimator.updateItemUsingCurrentState(hockeyStickView)
