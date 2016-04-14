@@ -13,6 +13,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     var array:[UIView] = []
     var hockeyStickArray:[UIView] = []
     var bothArray:[UIView] = []
+    var allowsRotation = false
 
 
     
@@ -24,6 +25,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dynamicAnimator = UIDynamicAnimator(referenceView: view)
+
         array.append(puckView)
         bothArray.append(puckView)
         puckView.clipsToBounds = true
@@ -55,11 +58,13 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     {
         
         let stickDynamicItemBehavior = UIDynamicItemBehavior(items: hockeyStickArray)
-        stickDynamicItemBehavior.density = 100000.0
+        stickDynamicItemBehavior.density = 100000000000000000000.0
         stickDynamicItemBehavior.elasticity = 1.0
         stickDynamicItemBehavior.friction = 0.0
         stickDynamicItemBehavior.resistance = 0.0
+        stickDynamicItemBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(stickDynamicItemBehavior)
+
         
         let dynamicItemBehavior = UIDynamicItemBehavior(items: array)
         dynamicItemBehavior.density = 1.0
