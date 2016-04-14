@@ -29,12 +29,17 @@
                                     <outletCollection property="gestureRecognizers" destination="7Ns-jF-0Xh" appends="YES" id="zdM-9p-rkg"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l36-bN-2oC">
+                                <rect key="frame" x="264" y="246" width="240" height="18"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
+                        <outlet property="goalView" destination="l36-bN-2oC" id="aTx-dj-6jA"/>
                         <outlet property="hockeyStickView" destination="88g-vi-e0e" id="R2M-89-wLf"/>
                         <outlet property="puckView" destination="vcp-q8-Wyv" id="C8i-1m-ppz"/>
                     </connections>
