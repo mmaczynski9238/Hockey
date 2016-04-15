@@ -54,7 +54,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
     }
     
-    
     @IBAction func hockeyStickPanGestureRecognizer(sender: UIPanGestureRecognizer)
     {//
         let panGesture = sender.locationInView(view)
