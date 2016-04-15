@@ -18,11 +18,19 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
 
     var dynamicAnimator = UIDynamicAnimator()
-    var collisionBehavior = UICollisionBehavior()
+    var collisionBehavior =
+        UICollisionBehavior()
 
     @IBOutlet weak var hockeyStickView: UIView!
     @IBOutlet weak var puckView: UIView!
     @IBOutlet weak var goalView: UIView!
+    
+    @IBOutlet weak var backOfGoal: UIView!
+    @IBOutlet weak var rightOfGoal: UIView!
+    @IBOutlet weak var leftOfGoal: UIView!
+    
+    @IBOutlet weak var leftGoalPost: UIView!
+    @IBOutlet weak var rightGoalPost: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +56,29 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         bothArray.append(goalView)
         view.addSubview(goalView)
         
+        goalArray.append(rightGoalPost)
+        bothArray.append(rightGoalPost)
+        view.addSubview(rightGoalPost)
+        
+        goalArray.append(leftGoalPost)
+        bothArray.append(leftGoalPost)
+        view.addSubview(leftGoalPost)
+        
+        
+        
+        goalArray.append(backOfGoal)
+        bothArray.append(backOfGoal)
+        view.addSubview(backOfGoal)
+        
+        goalArray.append(rightOfGoal)
+        bothArray.append(rightOfGoal)
+        view.addSubview(rightOfGoal)
+        
+        goalArray.append(leftOfGoal)
+        bothArray.append(leftOfGoal)
+        view.addSubview(leftOfGoal)
+        
+
         addDynamicBehavior()
 
         puckView.backgroundColor = UIColor.blueColor()
@@ -106,12 +137,24 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     {
         let alert = UIAlertController(title: "GOAL", message: nil, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
-            exit(0)
         }))
+        
+        presentViewController(alert, animated: true, completion: nil)
+
     }
 
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
+        
+        
         if item1.isEqual(puckView) && item2.isEqual(goalView) || item1.isEqual(goalView) && item2.isEqual(puckView)
+        {
+            goal()
+        }
+        else if item1.isEqual(puckView) && item2.isEqual(rightGoalPost) || item1.isEqual(rightGoalPost) && item2.isEqual(puckView)
+        {
+            goal()
+        }
+        else if item1.isEqual(puckView) && item2.isEqual(leftGoalPost) || item1.isEqual(leftGoalPost) && item2.isEqual(puckView)
         {
             goal()
         }
