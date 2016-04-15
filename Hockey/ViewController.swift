@@ -16,8 +16,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     var allowsRotation = false
     var goalArray:[UIView] = []
 
-
-    
+//
     var dynamicAnimator = UIDynamicAnimator()
     var collisionBehavior = UICollisionBehavior()
 
