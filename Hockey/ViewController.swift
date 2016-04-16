@@ -21,6 +21,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     var collisionBehavior =
         UICollisionBehavior()
 
+    @IBOutlet var puckImageView: UIImageView!
     @IBOutlet weak var hockeyStickView: UIView!
     @IBOutlet weak var puckView: UIView!
     @IBOutlet weak var goalView: UIView!
@@ -40,10 +41,15 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         
         
-        array.append(puckView)
-        bothArray.append(puckView)
-        puckView.clipsToBounds = true
-        view.addSubview(puckView)
+//        array.append(puckView)
+//        bothArray.append(puckView)
+//        puckView.clipsToBounds = true
+//        view.addSubview(puckView)
+        
+        array.append(puckImageView)
+        bothArray.append(puckImageView)
+        puckImageView.clipsToBounds = true
+        view.addSubview(puckImageView)
 
         hockeyStickArray.append(hockeyStickView)
         hockeyStickView.clipsToBounds = true
@@ -81,7 +87,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
         addDynamicBehavior()
 
-        puckView.backgroundColor = UIColor.blueColor()
+        puckView.backgroundColor = UIColor.whiteColor()
 
     }
     
@@ -111,17 +117,19 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         goalDynamicItemBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(goalDynamicItemBehavior)
 
-        let dynamicItemBehavior = UIDynamicItemBehavior(items: array)
-        dynamicItemBehavior.density = 1.0
-        dynamicItemBehavior.elasticity = 1.0
-        dynamicItemBehavior.friction = 0.0
-        dynamicItemBehavior.resistance = 0.0
-        dynamicAnimator.addBehavior(dynamicItemBehavior)
+        let puckDynamicItemBehavior = UIDynamicItemBehavior(items: array)
+        puckDynamicItemBehavior.density = 1.0
+        puckDynamicItemBehavior.elasticity = 1.0
+        puckDynamicItemBehavior.friction = 0.0
+        puckDynamicItemBehavior.resistance = 0.0
+        puckDynamicItemBehavior.allowsRotation = false
+
+        dynamicAnimator.addBehavior(puckDynamicItemBehavior)
 
         
         
         let pushBehavior = UIPushBehavior(items: array, mode: .Instantaneous)
-        pushBehavior.magnitude = 1.0
+        pushBehavior.magnitude = 1.5
         pushBehavior.pushDirection = CGVectorMake(0.5, 0.5)
         dynamicAnimator.addBehavior(pushBehavior)
         
@@ -146,15 +154,15 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
         
         
-        if item1.isEqual(puckView) && item2.isEqual(goalView) || item1.isEqual(goalView) && item2.isEqual(puckView)
+        if item1.isEqual(puckImageView) && item2.isEqual(goalView) || item1.isEqual(goalView) && item2.isEqual(puckImageView)
         {
             goal()
         }
-        else if item1.isEqual(puckView) && item2.isEqual(rightGoalPost) || item1.isEqual(rightGoalPost) && item2.isEqual(puckView)
+        else if item1.isEqual(puckImageView) && item2.isEqual(rightGoalPost) || item1.isEqual(rightGoalPost) && item2.isEqual(puckImageView)
         {
             goal()
         }
-        else if item1.isEqual(puckView) && item2.isEqual(leftGoalPost) || item1.isEqual(leftGoalPost) && item2.isEqual(puckView)
+        else if item1.isEqual(puckImageView) && item2.isEqual(leftGoalPost) || item1.isEqual(leftGoalPost) && item2.isEqual(puckImageView)
         {
             goal()
         }
