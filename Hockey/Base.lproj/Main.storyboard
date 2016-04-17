@@ -51,14 +51,29 @@
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qQ-UT-VLW">
                                 <rect key="frame" x="251" y="120" width="268" height="7"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="puck" translatesAutoresizingMaskIntoConstraints="NO" id="eWc-4U-e88">
                                 <rect key="frame" x="200" y="434" width="54" height="39"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of Goals: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKx-Vk-xd5">
+                                <rect key="frame" x="599" y="897" width="149" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZg-cr-wov">
+                                <rect key="frame" x="122" y="856" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AKO-rJ-qjO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
@@ -67,10 +82,12 @@
                         <outlet property="hockeyStickView" destination="88g-vi-e0e" id="R2M-89-wLf"/>
                         <outlet property="leftGoalPost" destination="p3T-pe-ZaB" id="D4a-c7-38h"/>
                         <outlet property="leftOfGoal" destination="wxF-K2-0rw" id="BHr-vc-UPC"/>
+                        <outlet property="numberOfGoalsTextField" destination="KKx-Vk-xd5" id="4kn-2Y-OzB"/>
                         <outlet property="puckImageView" destination="eWc-4U-e88" id="06i-AJ-auz"/>
                         <outlet property="puckView" destination="vcp-q8-Wyv" id="C8i-1m-ppz"/>
                         <outlet property="rightGoalPost" destination="p3T-pe-ZaB" id="meo-iA-13I"/>
                         <outlet property="rightOfGoal" destination="vC4-qg-QYm" id="X2X-Iz-ziB"/>
+                        <outlet property="startButtonOutlet" destination="wZg-cr-wov" id="R4m-rJ-3xJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
