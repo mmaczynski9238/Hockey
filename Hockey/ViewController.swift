@@ -113,7 +113,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         dynamicAnimator.addBehavior(goalDynamicItemBehavior)
 
         let puckDynamicItemBehavior = UIDynamicItemBehavior(items: array)
-        puckDynamicItemBehavior.density = 1.0
+        puckDynamicItemBehavior.density = 0.5
         puckDynamicItemBehavior.elasticity = 1.0
         puckDynamicItemBehavior.friction = 0.0
         puckDynamicItemBehavior.resistance = 0.0
