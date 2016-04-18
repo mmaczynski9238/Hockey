@@ -170,9 +170,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
 
     @IBAction func startButton(sender: UIButton) {
-    
-
-    
         puckImageView.alpha = 1.0
 
         pushPuck()
