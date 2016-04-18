@@ -20,6 +20,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     var collisionBehavior =
         UICollisionBehavior()
 
+    
+    var goals = 0
+    
     @IBOutlet var puckImageView: UIImageView!
     @IBOutlet weak var hockeyStickView: UIView!
     @IBOutlet weak var puckView: UIView!
@@ -145,10 +148,11 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         self.puckView.alpha = 0.0
         self.startButtonOutlet.alpha = 1.0
             }))
-        presentViewController(alert, animated: true, completion: nil)
+        //presentViewController(alert, animated: true, completion: nil)
         
 
-        
+        goals += 1
+        numberOfGoalsTextField.text = "Number of Goals: \(goals)"
     }
 
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
@@ -179,6 +183,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     }
 
 
+    
 
 
 
