@@ -150,6 +150,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         puckImageView.alpha = 0.0
         self.puckImageView.removeFromSuperview()
         self.collisionBehavior.removeItem(self.puckImageView)
+        dynamicAnimator.updateItemUsingCurrentState(puckImageView)
 
 
         goals += 1
@@ -176,8 +177,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
 
     @IBAction func startButton(sender: UIButton) {
-        self.puckImageView.removeFromSuperview()
-        self.collisionBehavior.removeItem(self.puckImageView)
+//        self.puckImageView.removeFromSuperview()
+//        self.collisionBehavior.removeItem(self.puckImageView)
+//        dynamicAnimator.updateItemUsingCurrentState(puckImageView)
 
         drawPuck()
         puckImageView.alpha = 1.0
