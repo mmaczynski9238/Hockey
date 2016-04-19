@@ -23,71 +23,61 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     var goals = 0
     
-    @IBOutlet var puckImageView: UIImageView!
+    @IBOutlet var oldPuckImageView: UIImageView!
+    
     @IBOutlet weak var hockeyStickView: UIView!
     @IBOutlet weak var puckView: UIView!
+    var puckImageView = UIImageView()
+    
     
     @IBOutlet weak var backOfGoal: UIView!
     @IBOutlet weak var rightOfGoal: UIView! //invisible views
     @IBOutlet weak var leftOfGoal: UIView!
     
     @IBOutlet weak var goalView: UIView!
-    @IBOutlet weak var leftGoalPost: UIView!
-    @IBOutlet weak var rightGoalPost: UIView! //goal
+    @IBOutlet weak var leftGoalPost: UIView! //goal
+    @IBOutlet weak var rightGoalPost: UIView!
     
     @IBOutlet var numberOfGoalsTextField: UILabel!
     @IBOutlet var startButtonOutlet: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
-//        array.append(puckView)
-//        bothArray.append(puckView)
-//        puckView.clipsToBounds = true
-//        view.addSubview(puckView)
+        array.append(puckImageView); bothArray.append(puckImageView)
         
-        array.append(puckImageView)
-        bothArray.append(puckImageView)
-        puckImageView.clipsToBounds = true
+       // puckImageView.clipsToBounds = true
+        
+        //puckImageView.alpha = 0.0
+        oldPuckImageView.alpha = 0.0
+
+        //drawPuck()
+
+        hockeyStickArray.append(hockeyStickView); bothArray.append(hockeyStickView); view.addSubview(hockeyStickView)
+        hockeyStickView.clipsToBounds = true;
+        
+        goalArray.append(goalView);         bothArray.append(goalView);       view.addSubview(goalView)
+        
+        goalArray.append(rightGoalPost);    bothArray.append(rightGoalPost);  view.addSubview(rightGoalPost)
+        
+        goalArray.append(leftGoalPost);     bothArray.append(leftGoalPost);   view.addSubview(leftGoalPost)
+        
+        goalArray.append(backOfGoal);       bothArray.append(backOfGoal);     view.addSubview(backOfGoal)
+        
+        goalArray.append(rightOfGoal);      bothArray.append(rightOfGoal);    view.addSubview(rightOfGoal)
+        
+        goalArray.append(leftOfGoal);       bothArray.append(leftOfGoal);     view.addSubview(leftOfGoal)
+        
+
+    }
+    
+    func drawPuck()
+    {
+        puckImageView.frame = CGRect(x: 20, y: 20, width: 55, height: 40)
         view.addSubview(puckImageView)
-        puckView.layer.cornerRadius = puckView.frame.size.width/2
-        puckImageView.alpha = 0.0
-
-        hockeyStickArray.append(hockeyStickView)
-        hockeyStickView.clipsToBounds = true
-
-        bothArray.append(hockeyStickView)
-
-        view.addSubview(hockeyStickView)
         
-        goalArray.append(goalView)
-        bothArray.append(goalView)
-        view.addSubview(goalView)
-        
-        goalArray.append(rightGoalPost)
-        bothArray.append(rightGoalPost)
-        view.addSubview(rightGoalPost)
-        
-        goalArray.append(leftGoalPost)
-        bothArray.append(leftGoalPost)
-        view.addSubview(leftGoalPost)
-        
-        goalArray.append(backOfGoal)
-        bothArray.append(backOfGoal)
-        view.addSubview(backOfGoal)
-        
-        goalArray.append(rightOfGoal)
-        bothArray.append(rightOfGoal)
-        view.addSubview(rightOfGoal)
-        
-        goalArray.append(leftOfGoal)
-        bothArray.append(leftOfGoal)
-        view.addSubview(leftOfGoal)
-        
-        addDynamicBehavior()
-
-        puckView.backgroundColor = UIColor.whiteColor()
-
+        puckImageView.image = UIImage(named:"puck.png")
     }
     
     @IBAction func hockeyStickPanGestureRecognizer(sender: UIPanGestureRecognizer)
@@ -137,22 +127,34 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         pushBehavior.pushDirection = CGVectorMake(0.5, 0.5)
         dynamicAnimator.addBehavior(pushBehavior)
     }
+    func resetPuck()
+    {
+        
+        //drawPuck()
+        //pushPuck()
+        
+    }
+
     func goal()
     {
         let alert = UIAlertController(title: "GOAL", message: nil, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
             
+            self.resetPuck()
+        
 
-        
-        
-        self.puckView.alpha = 0.0
         self.startButtonOutlet.alpha = 1.0
             }))
-        //presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
         
+        puckImageView.alpha = 0.0
+        self.puckImageView.removeFromSuperview()
+        self.collisionBehavior.removeItem(self.puckImageView)
+
 
         goals += 1
         numberOfGoalsTextField.text = "Number of Goals: \(goals)"
+        
     }
 
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint) {
@@ -174,14 +176,18 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
 
     @IBAction func startButton(sender: UIButton) {
+        self.puckImageView.removeFromSuperview()
+        self.collisionBehavior.removeItem(self.puckImageView)
+
+        drawPuck()
         puckImageView.alpha = 1.0
 
         pushPuck()
-        
-        startButtonOutlet.alpha = 0.0
-        
-    }
 
+        startButtonOutlet.alpha = 0.0
+        addDynamicBehavior()
+
+    }
 
     
 

@@ -59,7 +59,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="puck" translatesAutoresizingMaskIntoConstraints="NO" id="eWc-4U-e88">
-                                <rect key="frame" x="200" y="434" width="54" height="39"/>
+                                <rect key="frame" x="200" y="434" width="55" height="40"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of Goals: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKx-Vk-xd5">
                                 <rect key="frame" x="560" y="991" width="199" height="21"/>
@@ -89,7 +89,7 @@
                         <outlet property="leftGoalPost" destination="p3T-pe-ZaB" id="D4a-c7-38h"/>
                         <outlet property="leftOfGoal" destination="wxF-K2-0rw" id="BHr-vc-UPC"/>
                         <outlet property="numberOfGoalsTextField" destination="KKx-Vk-xd5" id="4kn-2Y-OzB"/>
-                        <outlet property="puckImageView" destination="eWc-4U-e88" id="06i-AJ-auz"/>
+                        <outlet property="oldPuckImageView" destination="eWc-4U-e88" id="kB3-t8-IQv"/>
                         <outlet property="puckView" destination="vcp-q8-Wyv" id="C8i-1m-ppz"/>
                         <outlet property="rightGoalPost" destination="p3T-pe-ZaB" id="meo-iA-13I"/>
                         <outlet property="rightOfGoal" destination="vC4-qg-QYm" id="X2X-Iz-ziB"/>
