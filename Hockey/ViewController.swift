@@ -28,6 +28,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     @IBOutlet weak var goalie: UIImageView!
     @IBOutlet var textField: UITextField!
     var goals = 0
+    var highscore = 0
     
     @IBOutlet var oldPuckImageView: UIImageView!
     
