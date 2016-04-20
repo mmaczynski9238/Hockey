@@ -55,8 +55,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         //puckImageView.alpha = 0.0
         oldPuckImageView.alpha = 0.0
 
-        //drawPuck()
-
+drawPuck()
         hockeyStickArray.append(hockeyStickView); bothArray.append(hockeyStickView); view.addSubview(hockeyStickView)
         hockeyStickView.clipsToBounds = true;
         
@@ -72,7 +71,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         goalArray.append(leftOfGoal);       bothArray.append(leftOfGoal);     view.addSubview(leftOfGoal)
         
-
+addDynamicBehavior()
     }
     
     func drawPuck()
@@ -121,10 +120,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.collisionDelegate = self
         dynamicAnimator.addBehavior(collisionBehavior)
-//    }
-//    
-//    func pushPuck()
-//    {
+    }
+    
+    func pushPuck()
+    {
         let pushBehavior = UIPushBehavior(items: array, mode: .Instantaneous)
         pushBehavior.magnitude = 1.5
         pushBehavior.pushDirection = CGVectorMake(0.5, 0.5)
@@ -133,9 +132,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     func resetPuck()
     {
         
-        //drawPuck()
-        //pushPuck()
-        
+pushPuck()
     }
 
     func goal()
@@ -144,7 +141,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
             
             self.resetPuck()
-        
+            self.dynamicAnimator.updateItemUsingCurrentState(self.puckImageView)
+
 
         self.startButtonOutlet.alpha = 1.0
             }))
@@ -154,6 +152,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         self.puckImageView.removeFromSuperview()
         self.collisionBehavior.removeItem(puckImageView)
         dynamicAnimator.updateItemUsingCurrentState(puckImageView)
+        drawPuck()
 
 
         goals += 1
@@ -184,12 +183,12 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 //        self.collisionBehavior.removeItem(self.puckImageView)
 //        dynamicAnimator.updateItemUsingCurrentState(puckImageView)
 
-        drawPuck()
+        //drawPuck()
         //puckImageView.alpha = 1.0
-
-
+//resetPuck()
+pushPuck()
         startButtonOutlet.alpha = 0.0
-        addDynamicBehavior()
+        //addDynamicBehavior()
 
     }
 
