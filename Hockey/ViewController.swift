@@ -121,10 +121,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.collisionDelegate = self
         dynamicAnimator.addBehavior(collisionBehavior)
-    }
-    
-    func pushPuck()
-    {
+//    }
+//    
+//    func pushPuck()
+//    {
         let pushBehavior = UIPushBehavior(items: array, mode: .Instantaneous)
         pushBehavior.magnitude = 1.5
         pushBehavior.pushDirection = CGVectorMake(0.5, 0.5)
@@ -150,9 +150,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
             }))
         presentViewController(alert, animated: true, completion: nil)
         
-        puckImageView.alpha = 0.0
+        //puckImageView.alpha = 0.0
         self.puckImageView.removeFromSuperview()
-        self.collisionBehavior.removeItem(self.puckImageView)
+        self.collisionBehavior.removeItem(puckImageView)
         dynamicAnimator.updateItemUsingCurrentState(puckImageView)
 
 
@@ -185,9 +185,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 //        dynamicAnimator.updateItemUsingCurrentState(puckImageView)
 
         drawPuck()
-        puckImageView.alpha = 1.0
+        //puckImageView.alpha = 1.0
 
-        pushPuck()
 
         startButtonOutlet.alpha = 0.0
         addDynamicBehavior()
@@ -197,18 +196,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     @IBAction func saveButton(sender: UIButton) {
         
-            let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
             
         defaults.setObject(self.textField.text, forKey: "highscore")
-
-        
-        
-
-        
     }
-
-
-
     @IBAction func loadButton(sender: UIButton) {
         
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -216,7 +207,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
             self.textField.text = (defaults.objectForKey("highscore") as! String)
         }
-        
     }
 
 
