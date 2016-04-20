@@ -12,6 +12,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     var array:[UIView] = []
     var hockeyStickArray:[UIView] = []
+    var goalieArray:[UIView] = []
+
     var bothArray:[UIView] = []
     var allowsRotation = false
     var goalArray:[UIView] = []
@@ -23,8 +25,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     
     
+    @IBOutlet weak var goalie: UIImageView!
     @IBOutlet var textField: UITextField!
-    var goals = 5
+    var goals = 0
     
     @IBOutlet var oldPuckImageView: UIImageView!
     
@@ -50,6 +53,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
         array.append(puckImageView); bothArray.append(puckImageView)
+        array.append(goalie); bothArray.append(goalie)
+
         
        // puckImageView.clipsToBounds = true
         
@@ -73,6 +78,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         goalArray.append(rightOfGoal);      bothArray.append(rightOfGoal);    view.addSubview(rightOfGoal)
         
         goalArray.append(leftOfGoal);       bothArray.append(leftOfGoal);     view.addSubview(leftOfGoal)
+        
         
         addDynamicBehavior()
     }
@@ -117,6 +123,15 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         puckDynamicItemBehavior.resistance = 0.0
         puckDynamicItemBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(puckDynamicItemBehavior)
+        
+        
+        let goalieDynamicItemBehavior = UIDynamicItemBehavior(items: goalieArray)
+        puckDynamicItemBehavior.density = 0.5
+        puckDynamicItemBehavior.elasticity = 1.0
+        puckDynamicItemBehavior.friction = 0.0
+        puckDynamicItemBehavior.resistance = 0.0
+        puckDynamicItemBehavior.allowsRotation = false
+        dynamicAnimator.addBehavior(goalieDynamicItemBehavior)
         
         let collisionBehavior = UICollisionBehavior(items: bothArray)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
