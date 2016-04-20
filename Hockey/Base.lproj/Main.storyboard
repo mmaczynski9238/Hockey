@@ -103,6 +103,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Goalie" translatesAutoresizingMaskIntoConstraints="NO" id="ihQ-u1-VbI">
                                 <rect key="frame" x="263" y="230" width="240" height="128"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Highscore: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZB6-AW-z1q">
+                                <rect key="frame" x="393" y="991" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -114,6 +120,7 @@
                         <outlet property="backOfGoal" destination="3qQ-UT-VLW" id="j5H-In-awy"/>
                         <outlet property="goalView" destination="l36-bN-2oC" id="aTx-dj-6jA"/>
                         <outlet property="goalie" destination="ihQ-u1-VbI" id="lDI-6l-dtf"/>
+                        <outlet property="highscoreLabel" destination="ZB6-AW-z1q" id="JNh-LH-xR9"/>
                         <outlet property="hockeyStickView" destination="88g-vi-e0e" id="R2M-89-wLf"/>
                         <outlet property="leftGoalPost" destination="p3T-pe-ZaB" id="D4a-c7-38h"/>
                         <outlet property="leftOfGoal" destination="wxF-K2-0rw" id="BHr-vc-UPC"/>

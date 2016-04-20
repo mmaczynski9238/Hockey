@@ -26,6 +26,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     
     @IBOutlet weak var goalie: UIImageView!
+    @IBOutlet weak var highscoreLabel: UILabel!
     @IBOutlet var textField: UITextField!
     var goals = 0
     var highscore = 0
@@ -79,7 +80,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         goalArray.append(rightOfGoal);      bothArray.append(rightOfGoal);    view.addSubview(rightOfGoal)
         
         goalArray.append(leftOfGoal);       bothArray.append(leftOfGoal);     view.addSubview(leftOfGoal)
-        
         
         addDynamicBehavior()
         
@@ -137,11 +137,11 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         
         let goalieDynamicItemBehavior = UIDynamicItemBehavior(items: goalieArray)
-        puckDynamicItemBehavior.density = 0.5
-        puckDynamicItemBehavior.elasticity = 1.0
-        puckDynamicItemBehavior.friction = 0.0
-        puckDynamicItemBehavior.resistance = 0.0
-        puckDynamicItemBehavior.allowsRotation = false
+        goalieDynamicItemBehavior.density = 100000000000000000.0
+        goalieDynamicItemBehavior.elasticity = 1.0
+        goalieDynamicItemBehavior.friction = 0.0
+        goalieDynamicItemBehavior.resistance = 0.0
+        goalieDynamicItemBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(goalieDynamicItemBehavior)
         
         let collisionBehavior = UICollisionBehavior(items: bothArray)
