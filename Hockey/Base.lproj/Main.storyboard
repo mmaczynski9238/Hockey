@@ -75,6 +75,25 @@
                                     <outletCollection property="gestureRecognizers" destination="7Ns-jF-0Xh" appends="YES" id="zdM-9p-rkg"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WN7-op-yw5">
+                                <rect key="frame" x="263" y="569" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="raQ-cs-YMQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tH-xX-MJi">
+                                <rect key="frame" x="480" y="569" width="34" height="30"/>
+                                <state key="normal" title="Load"/>
+                                <connections>
+                                    <action selector="loadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="opM-xB-tXd"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s37-Sf-x81">
+                                <rect key="frame" x="399" y="427" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -94,6 +113,7 @@
                         <outlet property="rightGoalPost" destination="p3T-pe-ZaB" id="meo-iA-13I"/>
                         <outlet property="rightOfGoal" destination="vC4-qg-QYm" id="X2X-Iz-ziB"/>
                         <outlet property="startButtonOutlet" destination="wZg-cr-wov" id="R4m-rJ-3xJ"/>
+                        <outlet property="textField" destination="s37-Sf-x81" id="V9c-jl-GBB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

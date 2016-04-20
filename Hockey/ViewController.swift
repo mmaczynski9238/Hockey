@@ -21,7 +21,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         UICollisionBehavior()
 
     
-    var goals = 0
+    
+    
+    @IBOutlet var textField: UITextField!
+    var goals = 5
     
     @IBOutlet var oldPuckImageView: UIImageView!
     
@@ -192,16 +195,31 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     }
 
     
+    @IBAction func saveButton(sender: UIButton) {
+        
+            var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            
+        defaults.setObject(self.textField.text, forKey: "firstName")
+
+        
+        
+
+        
+    }
 
 
 
 
 
-
-
-
-
-
+    @IBAction func loadButton(sender: UIButton) {
+        
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let firstNameIsNotNill = defaults.objectForKey("firstName") as? String {
+            self.textField.text = defaults.objectForKey("firstName") as! String
+        }
+        
+    }
 
 
 
