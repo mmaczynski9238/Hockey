@@ -29,7 +29,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     @IBOutlet weak var highscoreLabel: UILabel!
     @IBOutlet var textField: UITextField!
     var goals = 0
-    var highscore = 0
+    var highscore = 300
     
     @IBOutlet var oldPuckImageView: UIImageView!
     
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
-            self.textField.text = (defaults.objectForKey("highscore") as! String)
+            self.highscoreLabel.text = "Highscore\(defaults.objectForKey("highscore") as! String)"
         }
 
     }
