@@ -81,6 +81,16 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         
         addDynamicBehavior()
+        
+        
+        
+        
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
+            self.textField.text = (defaults.objectForKey("highscore") as! String)
+        }
+
     }
     
     func drawPuck()
