@@ -96,7 +96,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     func drawPuck()
     {
-        puckImageView.frame = CGRect(x: 20, y: 20, width: 55, height: 40)
+        puckImageView.frame = CGRect(x: 357, y: 492, width: 55, height: 40)
         view.addSubview(puckImageView)
         
         puckImageView.image = UIImage(named:"puck.png")
@@ -161,17 +161,17 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     func resetPuck()
     {
         
-pushPuck()
+//pushPuck()
     }
 
     func goal()
     {
         let alert = UIAlertController(title: "GOAL", message: nil, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (UIAlertAction) -> Void in
+        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: { (UIAlertAction) -> Void in
             
-            self.resetPuck()
+            //self.resetPuck()
             self.dynamicAnimator.updateItemUsingCurrentState(self.puckImageView)
-
+            self.drawPuck()
 
         self.startButtonOutlet.alpha = 1.0
             }))
@@ -182,7 +182,7 @@ pushPuck()
 
         self.puckImageView.removeFromSuperview()
         dynamicAnimator.updateItemUsingCurrentState(puckImageView)
-        drawPuck()
+        
 
 
         goals += 1
