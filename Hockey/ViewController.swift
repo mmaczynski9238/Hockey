@@ -30,6 +30,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     @IBOutlet weak var hockeyStickView: UIView!
     @IBOutlet weak var puckView: UIView!
+    
     var puckImageView = UIImageView()
     
     
@@ -52,10 +53,12 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
        // puckImageView.clipsToBounds = true
         
-        //puckImageView.alpha = 0.0
         oldPuckImageView.alpha = 0.0
 
-drawPuck()
+        drawPuck()
+        
+        puckImageView.alpha = 0.0
+
         hockeyStickArray.append(hockeyStickView); bothArray.append(hockeyStickView); view.addSubview(hockeyStickView)
         hockeyStickView.clipsToBounds = true;
         
@@ -71,7 +74,7 @@ drawPuck()
         
         goalArray.append(leftOfGoal);       bothArray.append(leftOfGoal);     view.addSubview(leftOfGoal)
         
-addDynamicBehavior()
+        addDynamicBehavior()
     }
     
     func drawPuck()
@@ -149,8 +152,9 @@ pushPuck()
         presentViewController(alert, animated: true, completion: nil)
         
         //puckImageView.alpha = 0.0
-        self.puckImageView.removeFromSuperview()
         self.collisionBehavior.removeItem(puckImageView)
+
+        self.puckImageView.removeFromSuperview()
         dynamicAnimator.updateItemUsingCurrentState(puckImageView)
         drawPuck()
 
@@ -179,14 +183,8 @@ pushPuck()
 
 
     @IBAction func startButton(sender: UIButton) {
-//        self.puckImageView.removeFromSuperview()
-//        self.collisionBehavior.removeItem(self.puckImageView)
-//        dynamicAnimator.updateItemUsingCurrentState(puckImageView)
-
-        //drawPuck()
-        //puckImageView.alpha = 1.0
-//resetPuck()
-pushPuck()
+        puckImageView.alpha = 1.0
+        pushPuck()
         startButtonOutlet.alpha = 0.0
         //addDynamicBehavior()
 
