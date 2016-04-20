@@ -89,7 +89,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
         if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
-            self.highscoreLabel.text = "Highscore\(defaults.objectForKey("highscore") as! String)"
+            self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! String)"
         }
 
     }
