@@ -25,6 +25,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     @IBOutlet var textField: UITextField!
     var goals = 5
+    var highschore = 0
     
     @IBOutlet var oldPuckImageView: UIImageView!
     
@@ -75,6 +76,16 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         goalArray.append(leftOfGoal);       bothArray.append(leftOfGoal);     view.addSubview(leftOfGoal)
         
         addDynamicBehavior()
+        
+        
+        
+        
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
+            self.textField.text = (defaults.objectForKey("highscore") as! String)
+        }
+
     }
     
     func drawPuck()
