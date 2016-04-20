@@ -197,9 +197,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     @IBAction func saveButton(sender: UIButton) {
         
-            var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
             
-        defaults.setObject(self.textField.text, forKey: "firstName")
+        defaults.setObject(self.textField.text, forKey: "highscore")
 
         
         
@@ -209,14 +209,12 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 
 
 
-
-
     @IBAction func loadButton(sender: UIButton) {
         
-        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         
-        if let firstNameIsNotNill = defaults.objectForKey("firstName") as? String {
-            self.textField.text = defaults.objectForKey("firstName") as! String
+        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
+            self.textField.text = (defaults.objectForKey("highscore") as! String)
         }
         
     }
