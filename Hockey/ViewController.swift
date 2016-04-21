@@ -23,13 +23,16 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         UICollisionBehavior()
 
     
+    var ScoreString = ""
+    var HighscoreString = ""
+    
     
     
     @IBOutlet weak var goalie: UIImageView!
     @IBOutlet weak var highscoreLabel: UILabel!
     @IBOutlet var textField: UITextField!
     var goals = 0
-    var highscore = 300
+    var highscoreVariable = 1
     
     @IBOutlet var oldPuckImageView: UIImageView!
     
@@ -58,6 +61,37 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         array.append(goalie); bothArray.append(goalie)
 
         
+        
+        
+        
+        
+        //Load Score
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        var score = defaults.valueForKey("Score")?.integerValue ?? 0
+        defaults.synchronize()
+        goals = score
+        
+        //Load Highscore
+        let SecondDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        var highscore = SecondDefaults.valueForKey("Highscore")?.integerValue ?? 0
+        SecondDefaults.synchronize()
+        highscoreVariable = highscore
+        
+        //Set Score Text
+        ScoreString = String(goals)
+        numberOfGoalsTextField.text = "Number of Goals: " + ScoreString
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
        // puckImageView.clipsToBounds = true
         
         oldPuckImageView.alpha = 0.0
@@ -84,13 +118,14 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         addDynamicBehavior()
         
         
-        
-        
-        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        
-        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
-            self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! String)"
-        }
+        self.HighscoreString = String(self.highscoreVariable)
+        self.highscoreLabel.text = "Highscore: " + self.HighscoreString
+//
+//        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+//        
+//        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
+//            self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! Int)"
+//        }
 
     }
     
@@ -169,23 +204,63 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         let alert = UIAlertController(title: "GOAL", message: nil, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: { (UIAlertAction) -> Void in
             
-            //self.resetPuck()
             self.dynamicAnimator.updateItemUsingCurrentState(self.puckImageView)
             self.drawPuck()
+            //self.checkHighscore()
+        
+            
+            
+            
+            
+
 
         self.startButtonOutlet.alpha = 1.0
             }))
         presentViewController(alert, animated: true, completion: nil)
         
-        //puckImageView.alpha = 0.0
         self.collisionBehavior.removeItem(puckImageView)
-
         self.puckImageView.removeFromSuperview()
         dynamicAnimator.updateItemUsingCurrentState(puckImageView)
         
+        
+        
+        
+        //Update Highscore if Score is bigger
+        if self.goals > self.highscoreVariable {
+            
+            //Set Highscore to Score
+            self.highscoreVariable = self.goals
+            
+            //Save Highscore
+            let SecondDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            SecondDefaults.setObject(self.highscoreVariable, forKey: "Highscore")
+            SecondDefaults.synchronize()
+            
+            //Set Highscore Text
+            self.HighscoreString = String(self.highscoreVariable)
+            self.highscoreLabel.text = "Highscore: " + self.HighscoreString
+            
+            //NewHighscoreLabel.text = "New Highscore"
+        }
+            //Set Highscore Text if Score is smaller
+        else if self.highscoreVariable >= self.goals {
+            self.HighscoreString = String(self.highscoreVariable)
+            self.highscoreLabel.text = "Highscore: " + self.HighscoreString
+        }
 
+        
+        
 
+        //enterHighscoreIntoVariable()
+        
         goals += 1
+        
+        
+        //Set Score Text
+        ScoreString = String(goals)
+        numberOfGoalsTextField.text = "Number of Goals: " + ScoreString
+
+        
         numberOfGoalsTextField.text = "Number of Goals: \(goals)"
         
     }
@@ -196,14 +271,14 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         {
             goal()
         }
-        else if item1.isEqual(puckImageView) && item2.isEqual(rightGoalPost) || item1.isEqual(rightGoalPost) && item2.isEqual(puckImageView)
-        {
-            goal()
-        }
-        else if item1.isEqual(puckImageView) && item2.isEqual(leftGoalPost) || item1.isEqual(leftGoalPost) && item2.isEqual(puckImageView)
-        {
-            goal()
-        }
+//        else if item1.isEqual(puckImageView) && item2.isEqual(rightGoalPost) || item1.isEqual(rightGoalPost) && item2.isEqual(puckImageView)
+//        {
+//            goal()
+//        }
+//        else if item1.isEqual(puckImageView) && item2.isEqual(leftGoalPost) || item1.isEqual(leftGoalPost) && item2.isEqual(puckImageView)
+//        {
+//            goal()
+//        }
         
        }
 
@@ -223,15 +298,38 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
             
         defaults.setObject(self.textField.text, forKey: "highscore")
     }
-    @IBAction func loadButton(sender: UIButton) {
-        
-        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        
-        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? String {
-            self.textField.text = (defaults.objectForKey("highscore") as! String)
-        }
+   @IBAction func loadButton(sender: UIButton) {
+//        
+//        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+//        
+//        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
+//            self.textField.text = (defaults.objectForKey("highscore") as! Int)
+//        }
     }
+    func enterHighscoreIntoVariable()
+    {
+//        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+//        
+//        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
+//            self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! Int)"
+////var highscoreVariable1 = defaults.objectForKey("highscore") as! Int
+//            //print(highscoreVariable1)
+        }    }
 
-
+    
+    func checkHighscore()
+    {
+//        
+//        
+//        if goals > highscoreVariable
+//        {
+//            print("hhh")
+//            let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+//            
+//            if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
+//                self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! Int)"
+//            }
+//        }
+    
 
 }
