@@ -206,7 +206,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
             
             self.dynamicAnimator.updateItemUsingCurrentState(self.puckImageView)
             self.drawPuck()
-            //self.checkHighscore()
+            self.checkHighscore()
         
             
             
@@ -222,32 +222,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         self.puckImageView.removeFromSuperview()
         dynamicAnimator.updateItemUsingCurrentState(puckImageView)
         
+        checkHighscore()
         
-        
-        
-        //Update Highscore if Score is bigger
-        if self.goals > self.highscoreVariable {
-            
-            //Set Highscore to Score
-            self.highscoreVariable = self.goals
-            
-            //Save Highscore
-            let SecondDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            SecondDefaults.setObject(self.highscoreVariable, forKey: "Highscore")
-            SecondDefaults.synchronize()
-            
-            //Set Highscore Text
-            self.HighscoreString = String(self.highscoreVariable)
-            self.highscoreLabel.text = "Highscore: " + self.HighscoreString
-            
-            //NewHighscoreLabel.text = "New Highscore"
-        }
-            //Set Highscore Text if Score is smaller
-        else if self.highscoreVariable >= self.goals {
-            self.HighscoreString = String(self.highscoreVariable)
-            self.highscoreLabel.text = "Highscore: " + self.HighscoreString
-        }
-
         
         
 
@@ -314,22 +290,36 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
 //            self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! Int)"
 ////var highscoreVariable1 = defaults.objectForKey("highscore") as! Int
 //            //print(highscoreVariable1)
-        }    }
+        }
 
     
     func checkHighscore()
     {
-//        
-//        
-//        if goals > highscoreVariable
-//        {
-//            print("hhh")
-//            let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-//            
-//            if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
-//                self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! Int)"
-//            }
-//        }
+        
+        //Update Highscore if Score is bigger
+        if goals > highscoreVariable {
+            
+            //Set Highscore to Score
+            highscoreVariable = goals
+            
+            //Save Highscore
+            let SecondDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            SecondDefaults.setObject(highscoreVariable, forKey: "Highscore")
+            SecondDefaults.synchronize()
+            
+            //Set Highscore Text
+            HighscoreString = String(highscoreVariable)
+            highscoreLabel.text = "Highscore: " + HighscoreString
+            
+            //NewHighscoreLabel.text = "New Highscore"
+        }
+            //Set Highscore Text if Score is smaller
+        else if highscoreVariable >= goals {
+            HighscoreString = String(self.highscoreVariable)
+            highscoreLabel.text = "Highscore: " + HighscoreString
+        }
     
+
+    }
 
 }
