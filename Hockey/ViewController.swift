@@ -58,7 +58,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
         array.append(puckImageView); bothArray.append(puckImageView)
-        array.append(goalie); bothArray.append(goalie)
+        goalieArray.append(goalie); bothArray.append(goalie)
 
         //Load Score
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -130,7 +130,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         dynamicAnimator.addBehavior(stickDynamicItemBehavior);                              dynamicAnimator.addBehavior(puckDynamicItemBehavior)
 
         let goalDynamicItemBehavior = UIDynamicItemBehavior(items: goalArray);              let goalieDynamicItemBehavior = UIDynamicItemBehavior(items: goalieArray)
-        goalDynamicItemBehavior.density = 100000000000000000000.0;                          goalieDynamicItemBehavior.density = 100000000000000000.0
+        goalDynamicItemBehavior.density = 100000000000000000000.0;                          goalieDynamicItemBehavior.density = 1.0
         goalDynamicItemBehavior.elasticity = 1.0;                                           goalieDynamicItemBehavior.elasticity = 1.0
         goalDynamicItemBehavior.friction = 0.0;                                             goalieDynamicItemBehavior.friction = 0.0
         goalDynamicItemBehavior.resistance = 0.0;                                           goalieDynamicItemBehavior.resistance = 0.0
@@ -142,6 +142,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.collisionDelegate = self
         dynamicAnimator.addBehavior(collisionBehavior)
+        
     }
     
     func pushPuck()
@@ -152,6 +153,13 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         dynamicAnimator.addBehavior(pushBehavior)
     }
    
+    func moveGoalie()
+    {
+        let goaliePush = UIPushBehavior(items: goalieArray, mode: .Instantaneous)
+        goaliePush.magnitude = 1.5
+        goaliePush.pushDirection = CGVectorMake(1.0, 0.0)
+        dynamicAnimator.addBehavior(goaliePush)
+    }
 
     func goal()
     {
@@ -204,6 +212,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         puckImageView.alpha = 1.0
         pushPuck()
         startButtonOutlet.alpha = 0.0
+        moveGoalie()
 
     }
 
@@ -255,7 +264,9 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         }
         
         
+        
     }
-
-
+    
 }
+
+
