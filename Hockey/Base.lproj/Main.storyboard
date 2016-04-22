@@ -106,8 +106,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="puck" translatesAutoresizingMaskIntoConstraints="NO" id="eWc-4U-e88">
                                 <rect key="frame" x="357" y="492" width="55" height="40"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Vg-JP-sxh">
+                                <rect key="frame" x="0.0" y="210" width="768" height="6"/>
+                                <color key="backgroundColor" red="0.91925110480000005" green="0.12122820770000001" blue="0.14971346290000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrM-lY-NgM">
+                                <rect key="frame" x="1" y="315" width="768" height="6"/>
+                                <color key="backgroundColor" red="0.91925110480000005" green="0.12122820770000001" blue="0.14971346290000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Goalie" translatesAutoresizingMaskIntoConstraints="NO" id="ihQ-u1-VbI">
-                                <rect key="frame" x="311" y="244" width="149" height="95"/>
+                                <rect key="frame" x="311" y="217" width="149" height="95"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -118,6 +126,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="backOfGoal" destination="3qQ-UT-VLW" id="j5H-In-awy"/>
+                        <outlet property="bottomShelf" destination="IrM-lY-NgM" id="W5t-ub-xeA"/>
                         <outlet property="goalView" destination="l36-bN-2oC" id="aTx-dj-6jA"/>
                         <outlet property="goalie" destination="ihQ-u1-VbI" id="lDI-6l-dtf"/>
                         <outlet property="highscoreLabel" destination="ZB6-AW-z1q" id="JNh-LH-xR9"/>
@@ -131,6 +140,7 @@
                         <outlet property="rightOfGoal" destination="vC4-qg-QYm" id="X2X-Iz-ziB"/>
                         <outlet property="startButtonOutlet" destination="wZg-cr-wov" id="R4m-rJ-3xJ"/>
                         <outlet property="textField" destination="s37-Sf-x81" id="V9c-jl-GBB"/>
+                        <outlet property="topShelf" destination="1Vg-JP-sxh" id="cxA-UG-vku"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

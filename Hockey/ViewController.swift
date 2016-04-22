@@ -13,7 +13,10 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     var array:[UIView] = []
     var hockeyStickArray:[UIView] = []
     var goalieArray:[UIView] = []
+    var goalieCollisionArray:[UIView] = []
+    var shelfArray:[UIView] = []
 
+    
     var bothArray:[UIView] = []
     var allowsRotation = false
     var goalArray:[UIView] = []
@@ -22,6 +25,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     var collisionBehavior =
         UICollisionBehavior()
 
+    @IBOutlet weak var topShelf: UIView!
+    @IBOutlet weak var bottomShelf: UIView!
     
     var ScoreString = ""
     var HighscoreString = ""
@@ -58,8 +63,15 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         dynamicAnimator = UIDynamicAnimator(referenceView: view)
         
         array.append(puckImageView); bothArray.append(puckImageView)
-        goalieArray.append(goalie); bothArray.append(goalie)
+        goalieArray.append(goalie); bothArray.append(goalie); goalieCollisionArray.append(goalie)
 
+        goalieCollisionArray.append(topShelf)
+        goalieCollisionArray.append(bottomShelf)
+        shelfArray.append(bottomShelf)
+        shelfArray.append(topShelf)
+
+
+        
         //Load Score
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         var score = defaults.valueForKey("Score")?.integerValue ?? 0
@@ -133,6 +145,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         goalDynamicItemBehavior.density = 100000000000000000000.0;                          goalieDynamicItemBehavior.density = 1.0
         goalDynamicItemBehavior.elasticity = 1.0;                                           goalieDynamicItemBehavior.elasticity = 1.0
         goalDynamicItemBehavior.friction = 0.0;                                             goalieDynamicItemBehavior.friction = 0.0
+                                                                                            goalieDynamicItemBehavior.
         goalDynamicItemBehavior.resistance = 0.0;                                           goalieDynamicItemBehavior.resistance = 0.0
         goalDynamicItemBehavior.allowsRotation = false;                                     goalieDynamicItemBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(goalDynamicItemBehavior);                               dynamicAnimator.addBehavior(goalieDynamicItemBehavior)
@@ -142,6 +155,21 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         collisionBehavior.collisionMode = .Everything
         collisionBehavior.collisionDelegate = self
         dynamicAnimator.addBehavior(collisionBehavior)
+        
+        let goalieCollisionBehavior = UICollisionBehavior(items: goalieCollisionArray)
+        goalieCollisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        goalieCollisionBehavior.collisionMode = .Everything
+        goalieCollisionBehavior.collisionDelegate = self
+        dynamicAnimator.addBehavior(goalieCollisionBehavior)
+        
+        
+        let shelfDynamicItemBehavior = UIDynamicItemBehavior(items: shelfArray);
+        shelfDynamicItemBehavior.density = 100000000000000000000.0;
+        shelfDynamicItemBehavior.elasticity = 1.0;
+        shelfDynamicItemBehavior.friction = 0.0;
+        shelfDynamicItemBehavior.resistance = 0.0;
+        shelfDynamicItemBehavior.allowsRotation = false;
+        dynamicAnimator.addBehavior(shelfDynamicItemBehavior);
         
     }
     
@@ -176,7 +204,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         self.collisionBehavior.removeItem(puckImageView)
         self.puckImageView.removeFromSuperview()
         dynamicAnimator.updateItemUsingCurrentState(puckImageView)
-        
+        moveGoalie()
         checkHighscore()
         
         goals += 1
