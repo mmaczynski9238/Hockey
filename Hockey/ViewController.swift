@@ -145,7 +145,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         goalDynamicItemBehavior.density = 100000000000000000000.0;                          goalieDynamicItemBehavior.density = 1.0
         goalDynamicItemBehavior.elasticity = 1.0;                                           goalieDynamicItemBehavior.elasticity = 1.0
         goalDynamicItemBehavior.friction = 0.0;                                             goalieDynamicItemBehavior.friction = 0.0
-                                                                                            goalieDynamicItemBehavior.
         goalDynamicItemBehavior.resistance = 0.0;                                           goalieDynamicItemBehavior.resistance = 0.0
         goalDynamicItemBehavior.allowsRotation = false;                                     goalieDynamicItemBehavior.allowsRotation = false
         dynamicAnimator.addBehavior(goalDynamicItemBehavior);                               dynamicAnimator.addBehavior(goalieDynamicItemBehavior)
