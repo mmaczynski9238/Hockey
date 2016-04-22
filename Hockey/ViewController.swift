@@ -60,11 +60,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         array.append(puckImageView); bothArray.append(puckImageView)
         array.append(goalie); bothArray.append(goalie)
 
-        
-        
-        
-        
-        
         //Load Score
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         var score = defaults.valueForKey("Score")?.integerValue ?? 0
@@ -80,19 +75,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         //Set Score Text
         ScoreString = String(goals)
         numberOfGoalsTextField.text = "Number of Goals: " + ScoreString
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       // puckImageView.clipsToBounds = true
         
         oldPuckImageView.alpha = 0.0
 
@@ -120,13 +102,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         self.HighscoreString = String(self.highscoreVariable)
         self.highscoreLabel.text = "Highscore: " + self.HighscoreString
-//
-//        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-//        
-//        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
-//            self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! Int)"
-//        }
-
     }
     
     func drawPuck()
@@ -146,38 +121,21 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
     
     func addDynamicBehavior()
     {
-        let stickDynamicItemBehavior = UIDynamicItemBehavior(items: hockeyStickArray)
-        stickDynamicItemBehavior.density = 100000000000000000000.0
-        stickDynamicItemBehavior.elasticity = 1.0
-        stickDynamicItemBehavior.friction = 0.0
-        stickDynamicItemBehavior.resistance = 0.0
-        stickDynamicItemBehavior.allowsRotation = false
-        dynamicAnimator.addBehavior(stickDynamicItemBehavior)
+        let stickDynamicItemBehavior = UIDynamicItemBehavior(items: hockeyStickArray);      let puckDynamicItemBehavior = UIDynamicItemBehavior(items: array)
+        stickDynamicItemBehavior.density = 100000000000000000000.0;                         puckDynamicItemBehavior.density = 0.5
+        stickDynamicItemBehavior.elasticity = 1.0;                                          puckDynamicItemBehavior.elasticity = 1.0
+        stickDynamicItemBehavior.friction = 0.0;                                            puckDynamicItemBehavior.friction = 0.0
+        stickDynamicItemBehavior.resistance = 0.0;                                          puckDynamicItemBehavior.resistance = 0.0
+        stickDynamicItemBehavior.allowsRotation = false;                                    puckDynamicItemBehavior.allowsRotation = false
+        dynamicAnimator.addBehavior(stickDynamicItemBehavior);                              dynamicAnimator.addBehavior(puckDynamicItemBehavior)
 
-        let goalDynamicItemBehavior = UIDynamicItemBehavior(items: goalArray)
-        goalDynamicItemBehavior.density = 100000000000000000000.0
-        goalDynamicItemBehavior.elasticity = 1.0
-        goalDynamicItemBehavior.friction = 0.0
-        goalDynamicItemBehavior.resistance = 0.0
-        goalDynamicItemBehavior.allowsRotation = false
-        dynamicAnimator.addBehavior(goalDynamicItemBehavior)
-
-        let puckDynamicItemBehavior = UIDynamicItemBehavior(items: array)
-        puckDynamicItemBehavior.density = 0.5
-        puckDynamicItemBehavior.elasticity = 1.0
-        puckDynamicItemBehavior.friction = 0.0
-        puckDynamicItemBehavior.resistance = 0.0
-        puckDynamicItemBehavior.allowsRotation = false
-        dynamicAnimator.addBehavior(puckDynamicItemBehavior)
-        
-        
-        let goalieDynamicItemBehavior = UIDynamicItemBehavior(items: goalieArray)
-        goalieDynamicItemBehavior.density = 100000000000000000.0
-        goalieDynamicItemBehavior.elasticity = 1.0
-        goalieDynamicItemBehavior.friction = 0.0
-        goalieDynamicItemBehavior.resistance = 0.0
-        goalieDynamicItemBehavior.allowsRotation = false
-        dynamicAnimator.addBehavior(goalieDynamicItemBehavior)
+        let goalDynamicItemBehavior = UIDynamicItemBehavior(items: goalArray);              let goalieDynamicItemBehavior = UIDynamicItemBehavior(items: goalieArray)
+        goalDynamicItemBehavior.density = 100000000000000000000.0;                          goalieDynamicItemBehavior.density = 100000000000000000.0
+        goalDynamicItemBehavior.elasticity = 1.0;                                           goalieDynamicItemBehavior.elasticity = 1.0
+        goalDynamicItemBehavior.friction = 0.0;                                             goalieDynamicItemBehavior.friction = 0.0
+        goalDynamicItemBehavior.resistance = 0.0;                                           goalieDynamicItemBehavior.resistance = 0.0
+        goalDynamicItemBehavior.allowsRotation = false;                                     goalieDynamicItemBehavior.allowsRotation = false
+        dynamicAnimator.addBehavior(goalDynamicItemBehavior);                               dynamicAnimator.addBehavior(goalieDynamicItemBehavior)
         
         let collisionBehavior = UICollisionBehavior(items: bothArray)
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
@@ -193,30 +151,19 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         pushBehavior.pushDirection = CGVectorMake(0.5, 0.5)
         dynamicAnimator.addBehavior(pushBehavior)
     }
-    func resetPuck()
-    {
-        
-//pushPuck()
-    }
+   
 
     func goal()
     {
         let alert = UIAlertController(title: "GOAL", message: nil, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: { (UIAlertAction) -> Void in
             
-            self.dynamicAnimator.updateItemUsingCurrentState(self.puckImageView)
-            self.drawPuck()
-            self.checkHighscore()
-        
-            
-            
-            
-            
-
-
-        self.startButtonOutlet.alpha = 1.0
+        self.dynamicAnimator.updateItemUsingCurrentState(self.puckImageView)
+        self.drawPuck()
+        self.checkHighscore()
             }))
         presentViewController(alert, animated: true, completion: nil)
+        
         
         self.collisionBehavior.removeItem(puckImageView)
         self.puckImageView.removeFromSuperview()
@@ -224,13 +171,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         checkHighscore()
         
-        
-        
-
-        //enterHighscoreIntoVariable()
-        
         goals += 1
-        
         
         //Set Score Text
         ScoreString = String(goals)
@@ -263,34 +204,28 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         puckImageView.alpha = 1.0
         pushPuck()
         startButtonOutlet.alpha = 0.0
-        //addDynamicBehavior()
 
     }
 
-    
     @IBAction func saveButton(sender: UIButton) {
         
-        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            
-        defaults.setObject(self.textField.text, forKey: "highscore")
     }
-   @IBAction func loadButton(sender: UIButton) {
-//        
-//        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-//        
-//        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
-//            self.textField.text = (defaults.objectForKey("highscore") as! Int)
-//        }
-    }
-    func enterHighscoreIntoVariable()
+
+
+    func resetHighscore()
     {
-//        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-//        
-//        if let highScoreIsNotNill = defaults.objectForKey("highscore") as? Int {
-//            self.highscoreLabel.text = "Highscore: \(defaults.objectForKey("highscore") as! Int)"
-////var highscoreVariable1 = defaults.objectForKey("highscore") as! Int
-//            //print(highscoreVariable1)
+        highscoreVariable = goals
+        let SecondDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        SecondDefaults.setObject(highscoreVariable, forKey: "Highscore")
+        SecondDefaults.synchronize()
+        HighscoreString = String(highscoreVariable)
+        highscoreLabel.text = "Highscore: " + HighscoreString
+        if highscoreVariable >= goals {
+            HighscoreString = String(self.highscoreVariable)
+            highscoreLabel.text = "Highscore: " + HighscoreString
         }
+    }
+    
 
     
     func checkHighscore()
@@ -298,28 +233,29 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate {
         
         //Update Highscore if Score is bigger
         if goals > highscoreVariable {
-            
-            //Set Highscore to Score
-            highscoreVariable = goals
-            
-            //Save Highscore
-            let SecondDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            SecondDefaults.setObject(highscoreVariable, forKey: "Highscore")
-            SecondDefaults.synchronize()
-            
-            //Set Highscore Text
-            HighscoreString = String(highscoreVariable)
-            highscoreLabel.text = "Highscore: " + HighscoreString
-            
-            //NewHighscoreLabel.text = "New Highscore"
+        
+        //Set Highscore to Score
+        highscoreVariable = goals
+        
+        //Save Highscore
+        let SecondDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        SecondDefaults.setObject(HighscoreString, forKey: "Highscore")
+        SecondDefaults.synchronize()
+        
+        //Set Highscore Text
+        HighscoreString = String(highscoreVariable)
+        highscoreLabel.text = "Highscore: " + HighscoreString
+        
+        //NewHighscoreLabel.text = "New Highscore"
         }
-            //Set Highscore Text if Score is smaller
+        //Set Highscore Text if Score is smaller
         else if highscoreVariable >= goals {
             HighscoreString = String(self.highscoreVariable)
             highscoreLabel.text = "Highscore: " + HighscoreString
         }
-    
-
+        
+        
     }
+
 
 }
